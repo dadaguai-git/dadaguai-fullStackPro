@@ -1,9 +1,10 @@
 import { Repository } from 'typeorm';
-import { HttpException, Injectable, Logger } from '@nestjs/common';
+import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as crypto from 'crypto';
 import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 
 function md5(str: string) {
   const hast = crypto.createHash('md5');
@@ -36,5 +37,12 @@ export class UserService {
       this.logger.error(error, UserService);
       return { message: '注册失败' };
     }
+  }
+
+  async login(user: LoginDto) {
+    const foundUser = await this.userRepository.findOneBy({
+      name: user.username,
+    });
+    return foundUser;
   }
 }

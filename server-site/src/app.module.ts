@@ -1,24 +1,14 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { getConfig } from './utils';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRoot({
-    //   type: 'mysql',
-    //   host: '150.158.157.53',
-    //   port: 3306,
-    //   username: 'root',
-    //   password: '1104choumaoHEIPI',
-    //   database: 'test',
-    //   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-    //   synchronize: true,
-    // }),
-
     //连接数据库
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -32,6 +22,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         synchronize: true,
         //开启自定注入实例 需要再TypeOrmModule.forFeature添加
         autoLoadEntities: true,
+      }),
+      inject: [ConfigService],
+    }),
+    //JWT认证
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        global: true,
+        secret: 'dadaguai',
+        signOptions: {
+          expiresIn: '7d',
+        },
       }),
       inject: [ConfigService],
     }),
