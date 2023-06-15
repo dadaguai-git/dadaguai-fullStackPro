@@ -5,10 +5,16 @@ import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { getConfig } from './utils';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { AuthGuard } from './auth.guard';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+      isGlobal: true,
+      load: [getConfig],
+    }),
     //连接数据库
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -26,25 +32,26 @@ import { JwtModule } from '@nestjs/jwt';
       inject: [ConfigService],
     }),
     //JWT认证
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        global: true,
-        secret: 'dadaguai',
-        signOptions: {
-          expiresIn: '7d',
-        },
-      }),
-      inject: [ConfigService],
-    }),
-    ConfigModule.forRoot({
-      ignoreEnvFile: true,
-      isGlobal: true,
-      load: [getConfig],
+    // JwtModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   useFactory: (configService: ConfigService) => ({
+    //     secret: configService.get('JWT_CONFIG.secret'),
+    //     signOptions: {
+    //       expiresIn: '7d',
+    //     },
+    //   }),
+    //   inject: [ConfigService],
+    // }),
+    JwtModule.register({
+      global: true,
+      secret: 'secret',
+      signOptions: {
+        expiresIn: '24h',
+      },
     }),
     UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthGuard],
 })
 export class AppModule {}

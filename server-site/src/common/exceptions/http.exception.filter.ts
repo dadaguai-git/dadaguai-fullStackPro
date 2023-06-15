@@ -30,6 +30,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         success: false,
       });
     }
+    console.log('HTTP标准异常', exception.getResponse()['message']);
     //HTTP 标准异常的处理。
     response.status(status).send({
       statusCode: status,

@@ -39,6 +39,7 @@ async function bootstrap() {
 
   //全局拦截器 设置返回参数格式
   app.useGlobalInterceptors(new TransformInterceptor());
-  await app.listen(3000);
+  await app.listen(3001);
+  console.log('启动了后端,地址为:http://127.0.0.1:3001/api/v1');
 }
 bootstrap();

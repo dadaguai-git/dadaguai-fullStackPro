@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { HttpException, Inject, Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as crypto from 'crypto';

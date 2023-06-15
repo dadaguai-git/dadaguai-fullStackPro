@@ -16,7 +16,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
     const response = ctx.getResponse<FastifyReply>();
     const request = ctx.getRequest<FastifyRequest>();
     const message = new ServiceUnavailableException().getResponse();
-    console.log(message);
+    console.log('标准异常', message);
     //是否直接打印异常信息
     // request.log.error(exception);
 
