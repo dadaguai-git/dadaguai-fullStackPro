@@ -5,17 +5,14 @@ import {
   Body,
   ValidationPipe,
   Inject,
-  Res,
   Response,
   Get,
-  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ConfigService } from '@nestjs/config';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '../auth.guard';
 
 @Controller({
   path: 'user',
@@ -58,13 +55,11 @@ export class UserController {
     return await this.userService.register(register);
   }
   @Get('test')
-  @UseGuards(AuthGuard)
   testAuth() {
     return { message: 'test' };
   }
 
   @Get('test1')
-  @UseGuards(AuthGuard)
   testAuth1() {
     return { message: 'test' };
   }
