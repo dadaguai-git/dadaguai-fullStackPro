@@ -47,7 +47,7 @@ export class UserController {
           },
         );
         res.header('authorization', 'bearer ' + token);
-        return { data: { token: token }, message: '登录成功' };
+        return { data: { token: `bearer ${token}` }, message: '登录成功' };
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +59,13 @@ export class UserController {
   }
   @Get('test')
   @UseGuards(AuthGuard)
-  test() {
+  testAuth() {
+    return { message: 'test' };
+  }
+
+  @Get('test1')
+  @UseGuards(AuthGuard)
+  testAuth1() {
     return { message: 'test' };
   }
 }
