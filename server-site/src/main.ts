@@ -9,6 +9,7 @@ import {
 import { AllExceptionsFilter } from './common/exceptions/base.exception.filter';
 import { HttpExceptionFilter } from './common/exceptions/http.exception.filter';
 import { generateDocument } from './doc';
+import { FastifyLogger } from './common/log';
 
 declare const module: any;
 async function bootstrap() {
@@ -20,8 +21,13 @@ async function bootstrap() {
 
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
+    new FastifyAdapter({
+      logger: FastifyLogger,
+    }),
   );
+
+  //全局拦截器 设置返回参数格式
+  app.useGlobalInterceptors(new TransformInterceptor());
 
   //接口版本化管理
   app.enableVersioning({
@@ -29,6 +35,7 @@ async function bootstrap() {
     type: VersioningType.URI,
   });
 
+  //异常过滤器
   app.useGlobalFilters(new AllExceptionsFilter(), new HttpExceptionFilter());
 
   //创建接口文档
@@ -37,8 +44,6 @@ async function bootstrap() {
   //设置全局前缀路径
   app.setGlobalPrefix('api');
 
-  //全局拦截器 设置返回参数格式
-  app.useGlobalInterceptors(new TransformInterceptor());
   await app.listen(3001);
   console.log('启动了后端,地址为:http://127.0.0.1:3001/api/v1');
 }
