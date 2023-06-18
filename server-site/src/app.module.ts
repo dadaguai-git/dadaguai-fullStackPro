@@ -1,4 +1,4 @@
-import { Global, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -32,17 +32,6 @@ import { APP_GUARD } from '@nestjs/core';
       }),
       inject: [ConfigService],
     }),
-    //JWT认证
-    // JwtModule.registerAsync({
-    //   imports: [ConfigModule],
-    //   useFactory: (configService: ConfigService) => ({
-    //     secret: configService.get('JWT_CONFIG.secret'),
-    //     signOptions: {
-    //       expiresIn: '7d',
-    //     },
-    //   }),
-    //   inject: [ConfigService],
-    // }),
     JwtModule.register({
       global: true,
       secret: 'secret',
