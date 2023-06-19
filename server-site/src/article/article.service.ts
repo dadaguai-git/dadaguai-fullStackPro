@@ -2,7 +2,7 @@ import {
   PaginationResult,
   PaginationService,
   QueryOptions,
-} from 'src/utils/paginationService';
+} from 'src/utils/pagination/pagination.Service';
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
@@ -23,6 +23,14 @@ export class ArticleService {
   findAll() {
     return this.articleNewsletterRepository.find();
   }
+
+  /**
+   *
+   * @param page number 页数
+   * @param limit number 分页
+   * @param options object 配置项
+   * @returns
+   */
 
   async findWithPagination(
     page: number,

@@ -3,7 +3,7 @@ import { ArticleService } from './article.service';
 import { ArticleController } from './article.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleNewsletter } from './entities/article.entity';
-import { PaginationService } from 'src/utils/paginationService';
+import { PaginationService } from 'src/utils/pagination/pagination.Service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ArticleNewsletter])],
