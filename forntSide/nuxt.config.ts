@@ -1,7 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { loadEnv } from "vite";
-
-console.log(process.env.API_URL);
 export default defineNuxtConfig({
   vite: {
     css: {

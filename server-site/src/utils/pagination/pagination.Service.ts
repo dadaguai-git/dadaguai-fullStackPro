@@ -52,7 +52,7 @@ export class PaginationService {
       .take(limit)
       .getManyAndCount();
 
-    const isEnd = total / limit == page;
+    const isEnd = page * limit >= total;
 
     return { data, total, page, limit, isEnd };
   }
