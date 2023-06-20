@@ -46,11 +46,11 @@ import { ArticleModule } from './article/article.module';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      //注册全局守卫
-      provide: APP_GUARD,
-      useClass: AuthGuard,
-    },
+    // {
+    //   //注册全局守卫
+    //   provide: APP_GUARD,
+    //   useClass: AuthGuard,
+    // },
   ],
 })
 export class AppModule {}
