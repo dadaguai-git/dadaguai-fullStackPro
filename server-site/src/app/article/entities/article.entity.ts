@@ -55,7 +55,7 @@ export class ArticleNewsletter {
 
   @Column({
     name: 'tags',
-    type: 'char',
+    length: 50,
     comment: '标签',
   })
   tags: string;

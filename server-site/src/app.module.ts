@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+import { UserModule } from './app/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { getConfig } from './utils';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
-import { ArticleModule } from './article/article.module';
+import { ArticleModule } from './app/article/article.module';
 
 @Module({
   imports: [

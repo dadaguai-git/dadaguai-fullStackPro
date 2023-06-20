@@ -7,7 +7,10 @@
       <div class="bg-white flex-1">
         <h2 class="text-2xl font-bold mb-4">中间内容区域</h2>
         <p class="text-gray-800 leading-relaxed mb-2">
-          <CommonDaCard :data="item" v-for="item in data"></CommonDaCard>
+          <CommonDaCard
+            :articleInfo="item"
+            v-for="item in data.data"
+          ></CommonDaCard>
         </p>
       </div>
     </div>
@@ -19,12 +22,11 @@
 <script setup lang="ts">
   import { ArticleInfo } from "@/interface";
 
-  let data = reactive({});
+  let data = reactive({} as ArticleInfo);
   onMounted(async () => {
     const { data: articleInfo } = await useFetch("api/article");
     if (typeof articleInfo.value === "object" && articleInfo.value !== null) {
-      Object.assign(data, articleInfo.value as ArticleInfo);
+      Object.assign(data, articleInfo.value);
     }
   });
-  console.log(data);
 </script>

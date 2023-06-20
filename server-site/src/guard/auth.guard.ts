@@ -9,7 +9,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
-import router from './common/router/index';
+import router from '../common/router/index';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
