@@ -24,7 +24,7 @@ export class ArticleController {
   async findAll() {
     // const data = await this.articleService.findAll();
     const data = await this.articleService.findWithPagination(10, 10);
-    return { data: data.data };
+    return { data: data };
   }
 
   @Get('articleId:id')

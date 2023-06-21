@@ -25,8 +25,8 @@
   let data = reactive({} as ArticleInfo);
   onMounted(async () => {
     const { data: articleInfo } = await useFetch("api/article");
-    if (typeof articleInfo.value === "object" && articleInfo.value !== null) {
-      Object.assign(data, articleInfo.value);
-    }
+    data = articleInfo.value as ArticleInfo;
   });
+
+  console.log(data);
 </script>

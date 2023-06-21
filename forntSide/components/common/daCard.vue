@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-6 rounded-lg shadow-lg mb-5">
+  <div v-if="articleInfo" class="bg-white p-6 rounded-lg shadow-lg mb-5">
     <div class="flex items-center justify-between mb-6">
       <div class="font-semibold text-lg text-gray-700">
         {{ articleInfo?.author }}
@@ -40,6 +40,7 @@
       <a href="#" class="text-blue-500 text-sm">Read more</a>
     </div>
   </div>
+  <d-skeleton class="mb-5" v-else></d-skeleton>
 </template>
 
 <script setup lang="ts">
