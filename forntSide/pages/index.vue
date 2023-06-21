@@ -9,7 +9,7 @@
         <p class="text-gray-800 leading-relaxed mb-2">
           <CommonDaCard
             :articleInfo="item"
-            v-for="item in data.data"
+            v-for="item in articleList.data.data"
           ></CommonDaCard>
         </p>
       </div>
@@ -20,13 +20,9 @@
 </template>
 
 <script setup lang="ts">
-  import { ArticleInfo } from "@/interface";
+  import { Response } from "@/interface";
 
-  let data = reactive({} as ArticleInfo);
-  onMounted(async () => {
-    const { data: articleInfo } = await useFetch("api/article");
-    data = articleInfo.value as ArticleInfo;
-  });
-
-  console.log(data);
+  let articleList = reactive({} as Response);
+  const { data: articleInfo } = await useFetch("api/article");
+  articleList = articleInfo.value as Response;
 </script>

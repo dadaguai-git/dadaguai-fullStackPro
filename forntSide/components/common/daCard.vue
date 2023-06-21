@@ -52,6 +52,7 @@
     },
   });
 
+  console.log(props.articleInfo);
   const formatDate = (dateTime: string): string => {
     const now = new Date();
     const date = new Date(dateTime);
