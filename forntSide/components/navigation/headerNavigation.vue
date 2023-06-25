@@ -55,7 +55,9 @@
             @toggle="handleToggle"
           >
             <d-button-group size="lg">
-              <d-button variant="solid"> 创作 </d-button>
+              <d-button @click="handleCreateClick" variant="solid">
+                创作
+              </d-button>
               <d-button :icon="iconStyle" variant="solid" />
             </d-button-group>
             <template #menu>
@@ -71,15 +73,22 @@
 </template>
 
 <script setup>
+  const router = useRouter();
   let isOpen = ref(false);
   let toggle = ref(false);
   let trigger = ref("hover");
   let position = reactive(["bottom-start"]);
+
   let iconStyle = computed(() => {
     return toggle.value ? "icon-chevron-up" : "icon-chevron-down";
   });
+
   let handleToggle = (val) => {
     console.log(val);
     toggle.value = val;
+  };
+
+  let handleCreateClick = () => {
+    router.push({path:'creator'});
   };
 </script>
