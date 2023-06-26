@@ -1,16 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-console.log(import.meta.env.VITE_API_URL + import.meta.env.VITE_API_PREFIX);
 export default defineNuxtConfig({
   alias: {
     "@interfaces": "/interface/index.ts",
   },
   vite: {
     css: {
-      preprocessorOptions: {
-        // css: "./node_modules/@devui-design/icons/icomoon/devui-icon.css",
-      },
+      preprocessorOptions: {},
     },
   },
+
+  css: ["element-plus/dist/index.css"],
   nitro: {
     devProxy: {
       "/api": {
@@ -22,5 +21,8 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   ssr: false,
-  modules: ["@nuxtjs/tailwindcss", "@huntersofbook/naive-ui-nuxt"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@huntersofbook/naive-ui-nuxt",
+  ],
 });

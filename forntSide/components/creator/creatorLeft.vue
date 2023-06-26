@@ -4,60 +4,40 @@
       <el-button type="primary" size="large" plain class="w-full mt-3 mb-3"
         >写文章</el-button
       >
-      <d-menu :default-select-keys="['item1']" class="mr-3" width="256px">
-        <d-sub-menu title="内容管理" key="contentManager">
-          <template #icon>
-            <i class="icon-infomation"></i>
+      <el-menu default-active="home" class="el-menu-vertical-demo">
+        <el-menu-item index="home">
+          <template #title>
+            <span>首页</span>
           </template>
-          <d-menu-item class="bg-white" key="articleManager">
-            <span>文章管理</span>
-          </d-menu-item>
-          <d-menu-item key="columnManager">
-            <span>专栏管理</span>
-          </d-menu-item>
-          <d-menu-item key="commentManager">
-            <span>评论管理</span>
-          </d-menu-item>
-        </d-sub-menu>
-        <d-sub-menu title="数据中心" key="dataCenter">
-          <template #icon>
-            <i class="icon-setting"></i>
+        </el-menu-item>
+        <el-sub-menu  index="contentManager">
+          <template #title>
+            <el-icon><IconArticle></IconArticle></el-icon>
+            <span>内容管理</span>
           </template>
-          <d-menu-item key="submenu-item-2">
-            <span>submenu-item-2</span>
-          </d-menu-item>
-        </d-sub-menu>
-        <d-sub-menu title="创作中心" key="authoringCenter">
-          <template #icon>
-            <i class="icon-setting"></i>
+          <el-menu-item-group>
+            <el-menu-item index="articleManager">文章管理</el-menu-item>
+            <el-menu-item index="columnManager">专栏管理</el-menu-item>
+            <el-menu-item index="commentManager">评论管理</el-menu-item>
+          </el-menu-item-group>
+        </el-sub-menu>
+        <el-sub-menu index="dataCenter">
+          <template #title>
+            <el-icon><IconDatabaseOutlined></IconDatabaseOutlined></el-icon>
+            <span>数据中心</span>
           </template>
-          <d-menu-item key="submenu-item-2">
-            <span>submenu-item-2</span>
-          </d-menu-item>
-        </d-sub-menu>
-        <d-sub-menu title="帮助中心" key="helpCenter">
-          <template #icon>
-            <i class="icon-setting"></i>
-          </template>
-          <d-menu-item key="submenu-item-2">
-            <span>submenu-item-2</span>
-          </d-menu-item>
-        </d-sub-menu>
-      </d-menu>
+          <el-menu-item index="contentData">内容数据</el-menu-item>
+          <el-menu-item index="fanData">粉丝数据</el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="createCenter">
+          <span>创作中心</span>
+        </el-menu-item>
+        <el-menu-item index="helpCenter">
+          <span>帮助中心</span>
+        </el-menu-item>
+      </el-menu>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-  ::v-deep .devui-menu-vertical ul.devui-submenu .devui-menu-item {
-    background: #fff !important;
-  }
-
-  ::v-deep .devui-menu-vertical ul.devui-submenu .devui-menu-item:active {
-    color: #1e80ff !important;
-  }
-
-  //   .d-sub-menu {
-  //   background-color: transparent !important; /* or any color you want */
-  // }
-</style>
+<style lang="scss" scoped></style>
