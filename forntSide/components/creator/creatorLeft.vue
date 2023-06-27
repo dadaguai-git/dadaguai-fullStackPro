@@ -4,7 +4,7 @@
       <el-button type="primary" size="large" plain class="w-full mt-3 mb-3"
         >写文章</el-button
       >
-      <el-menu default-active="home" class="el-menu-vertical-demo">
+      <el-menu  default-active="home" style="border-right: 0px;" class="el-menu-vertical-demo border-r-0  w-[200px]">
         <el-menu-item index="home">
           <template #title>
             <span>首页</span>
