@@ -21,8 +21,5 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   ssr: false,
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@huntersofbook/naive-ui-nuxt",
-  ],
+  modules: ["@nuxtjs/tailwindcss"],
 });

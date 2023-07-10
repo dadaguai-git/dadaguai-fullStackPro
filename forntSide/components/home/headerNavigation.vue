@@ -47,26 +47,12 @@
 
       <div class="flex items-center justify-end">
         <div class="mr-8">
-          <d-dropdown
-            :visible="isOpen"
-            :trigger="trigger"
-            :position="position"
-            align="start"
-            @toggle="handleToggle"
-          >
-            <d-button-group size="lg">
-              <d-button @click="handleCreateClick" variant="solid">
-                创作
-              </d-button>
-              <d-button :icon="iconStyle" variant="solid" />
-            </d-button-group>
-            <template #menu>
-              <!-- <h1>123</h1> -->
-            </template>
-          </d-dropdown>
+          <el-button @click="handleCreateClick" >
+            创作
+          </el-button>
         </div>
-        <d-button class="mr-4" size="lg"> 注册 </d-button>
-        <d-button class="mr-4" variant="solid" size="lg"> 登录 </d-button>
+        <el-button class="mr-4"> 注册 </el-button>
+        <el-button class="mr-4" > 登录 </el-button>
       </div>
     </div>
   </nav>
@@ -84,11 +70,10 @@
   });
 
   let handleToggle = (val) => {
-    console.log(val);
     toggle.value = val;
   };
 
   let handleCreateClick = () => {
-    router.push({path:'creator'});
+    router.push({ path: "creator" });
   };
 </script>

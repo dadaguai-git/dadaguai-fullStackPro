@@ -40,7 +40,7 @@
       <a href="#" class="text-blue-500 text-sm">Read more</a>
     </div>
   </div>
-  <d-skeleton class="mb-5" v-else></d-skeleton>
+
 </template>
 
 <script setup lang="ts">
