@@ -1,50 +1,45 @@
 <template>
   <div class="affix-container mx-auto flex mt-5 max-w-7xl relative">
     <!-- 左侧内容栏 -->
-    <!-- <HomeSideNavigationLeft></HomeSideNavigationLeft> -->
-    <el-affix :offset="101">
-      <leftLayouts>
+    <leftLayouts class="fixed h-[340px] mr-8">
+      <div class="flex flex-col justify-center items-center">
         <el-menu
-          default-active="home"
+          @select="handleMenuSelect"
+          default-active="1"
           style="border-right: 0px"
           class="el-menu-vertical-demo h-auto border-r-0 w-[200px]"
         >
-          <el-menu-item index="home">
+          <el-menu-item index="1">
             <template #title>
-              <span>首页</span>
+              <el-icon> <Edit /></el-icon>
+              <span>综合</span>
             </template>
           </el-menu-item>
-          <el-sub-menu index="contentManager">
+          <el-menu-item index="2">
             <template #title>
-              <el-icon><IconArticle></IconArticle></el-icon>
-              <span>内容管理</span>
+              <el-icon> <DataLine /></el-icon>
+              <span>前端</span>
             </template>
-            <el-menu-item-group>
-              <el-menu-item index="articleManager">文章管理</el-menu-item>
-              <el-menu-item index="columnManager">专栏管理</el-menu-item>
-              <el-menu-item index="commentManager">评论管理</el-menu-item>
-            </el-menu-item-group>
-          </el-sub-menu>
-          <el-sub-menu index="dataCenter">
-            <template #title>
-              <el-icon><IconDatabaseOutlined></IconDatabaseOutlined></el-icon>
-              <span>数据中心</span>
-            </template>
-            <el-menu-item index="contentData">内容数据</el-menu-item>
-            <el-menu-item index="fanData">粉丝数据</el-menu-item>
-          </el-sub-menu>
-          <el-menu-item index="createCenter">
-            <span>创作中心</span>
           </el-menu-item>
-          <el-menu-item index="helpCenter">
-            <span>帮助中心</span>
+          <el-menu-item index="3">
+            <template #title>
+              <el-icon><DataAnalysis /></el-icon>
+              <span>后端</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <template #title>
+              <el-icon><Help /></el-icon>
+              <span>开发工具</span>
+            </template>
           </el-menu-item>
         </el-menu>
-      </leftLayouts>
-    </el-affix>
+      </div>
+    </leftLayouts>
 
     <!-- 中间内容区域 -->
-    <div class="w-3/5 px-4 py-8 bg-white mt-0 rounded-md h-full">
+    <div class="w-3/5 px-4 py-8 bg-white mt-0 rounded-md h-full ml-[246px]">
+      <!-- Your main content... -->
       <div class="bg-white flex-1">
         <h2 class="text-2xl font-bold mb-4">中间内容区域</h2>
         <p class="text-gray-800 leading-relaxed mb-2">
@@ -58,7 +53,6 @@
 
     <!-- 右侧内容栏 -->
     <rightLayouts></rightLayouts>
-    <!-- <HomeSideNavigationRight></HomeSideNavigationRight> -->
   </div>
 </template>
 
@@ -68,6 +62,10 @@
   let articleList = reactive({} as Response);
   const { data: articleInfo } = await useFetch("api/article");
   articleList = articleInfo.value as Response;
+
+  let handleMenuSelect = (index: number, indexPath: string[]) => {
+    console.log(index);
+  };
 </script>
 
 <style lang="scss" scoped>
