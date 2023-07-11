@@ -1,12 +1,45 @@
 <template>
-  <div
-    class="affix-container mx-auto flex mt-5 max-w-7xl  relative"
-  >
+  <div class="affix-container mx-auto flex mt-5 max-w-7xl relative">
     <!-- 左侧内容栏 -->
     <!-- <HomeSideNavigationLeft></HomeSideNavigationLeft> -->
     <el-affix :offset="101">
-      <leftLayouts >
-        <h1>11231223</h1>
+      <leftLayouts>
+        <el-menu
+          default-active="home"
+          style="border-right: 0px"
+          class="el-menu-vertical-demo h-auto border-r-0 w-[200px]"
+        >
+          <el-menu-item index="home">
+            <template #title>
+              <span>首页</span>
+            </template>
+          </el-menu-item>
+          <el-sub-menu index="contentManager">
+            <template #title>
+              <el-icon><IconArticle></IconArticle></el-icon>
+              <span>内容管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="articleManager">文章管理</el-menu-item>
+              <el-menu-item index="columnManager">专栏管理</el-menu-item>
+              <el-menu-item index="commentManager">评论管理</el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
+          <el-sub-menu index="dataCenter">
+            <template #title>
+              <el-icon><IconDatabaseOutlined></IconDatabaseOutlined></el-icon>
+              <span>数据中心</span>
+            </template>
+            <el-menu-item index="contentData">内容数据</el-menu-item>
+            <el-menu-item index="fanData">粉丝数据</el-menu-item>
+          </el-sub-menu>
+          <el-menu-item index="createCenter">
+            <span>创作中心</span>
+          </el-menu-item>
+          <el-menu-item index="helpCenter">
+            <span>帮助中心</span>
+          </el-menu-item>
+        </el-menu>
       </leftLayouts>
     </el-affix>
 
@@ -35,19 +68,6 @@
   let articleList = reactive({} as Response);
   const { data: articleInfo } = await useFetch("api/article");
   articleList = articleInfo.value as Response;
-
-  let scrollNum = ref<number>(101)
-
-  onMounted(() => {
-    window.addEventListener("scroll",function(e:Event){
-      console.log(e)
-      scrollNum.value = 102
-      console.log(scrollNum.value)
-    })
-  })
-  let handleWatchScroll = (e: Event) => {
-    console.log(e);
-  };
 </script>
 
 <style lang="scss" scoped>

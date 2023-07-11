@@ -1,21 +1,11 @@
 <template>
-  <!-- <div class="flex flex-col">
-		<d-menu mode="horizontal">
-			<d-menu-item key="home">
-				<template #icon>
-					<i class="icon-homepage"></i>
-				</template>
-				首页
-			</d-menu-item>
-		</d-menu>
-	</div> -->
   <nav class="bg-white px-6 py-4 shadow">
     <div
       class="flex flex-col container mx-auto md:flex-row md:items-center md:justify-between"
     >
       <div class="flex justify-between items-center">
         <div>
-          <a href="#" class="text-gray-800 text-xl font-bold md:text-2xl"
+          <a @click="handleJumpClick('/')" class="text-gray-800 text-xl font-bold md:text-2xl"
             >掘金</a
           >
         </div>
@@ -47,7 +37,7 @@
 
       <div class="flex items-center justify-end">
         <div class="mr-8">
-          <el-button @click="handleCreateClick" >
+          <el-button @click="handleJumpClick('/creator')" >
             创作
           </el-button>
         </div>
@@ -60,20 +50,13 @@
 
 <script setup>
   const router = useRouter();
-  let isOpen = ref(false);
   let toggle = ref(false);
-  let trigger = ref("hover");
-  let position = reactive(["bottom-start"]);
-
-  let iconStyle = computed(() => {
-    return toggle.value ? "icon-chevron-up" : "icon-chevron-down";
-  });
 
   let handleToggle = (val) => {
     toggle.value = val;
   };
-
-  let handleCreateClick = () => {
-    router.push({ path: "creator" });
+  
+  let handleJumpClick = (path) => {
+    router.push({ path: path });
   };
 </script>

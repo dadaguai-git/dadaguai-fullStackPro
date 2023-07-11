@@ -2,16 +2,14 @@
   <div class="container mx-auto flex mt-5 max-w-7xl h-full">
     <!-- 左侧内容栏 -->
     <!-- <LazyCreatorLeft></LazyCreatorLeft> -->
-    <leftLayouts >
-      <div class="flex justify-center">
-        <el-button type="primary" size="large" plain class="w-4/5 mt-3 mb-3"
-          >写文章</el-button
-        >
-      </div>
+    <leftLayouts>
+      <el-button type="primary" size="large" plain class="w-4/5 mt-3 mb-3"
+        >写文章</el-button
+      >
       <el-menu
         default-active="home"
         style="border-right: 0px"
-        class="el-menu-vertical-demo border-r-0 w-[200px]"
+        class="el-menu-vertical-demo h-auto border-r-0 w-[200px]"
       >
         <el-menu-item index="home">
           <template #title>
